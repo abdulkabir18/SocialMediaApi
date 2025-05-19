@@ -1,0 +1,16 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Host/UploadProfiles/9d53b294-91ff-4574-9993-fe990302bfa9 Mine.iklyldq125.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadProfiles\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"iklyldq125"},{"Name":"integrity","Value":"sha256-sgrprQFE1ko5p5WkMHqWCOaz8LZQF\u002Bs\u002BXAfUd7Yq3W4="},{"Name":"label","Value":"_content/Host/UploadProfiles/9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"26941"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022sgrprQFE1ko5p5WkMHqWCOaz8LZQF\u002Bs\u002BXAfUd7Yq3W4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 15 May 2025 02:35:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Host/UploadProfiles/9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadProfiles\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-sgrprQFE1ko5p5WkMHqWCOaz8LZQF\u002Bs\u002BXAfUd7Yq3W4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"26941"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022sgrprQFE1ko5p5WkMHqWCOaz8LZQF\u002Bs\u002BXAfUd7Yq3W4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 15 May 2025 02:35:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

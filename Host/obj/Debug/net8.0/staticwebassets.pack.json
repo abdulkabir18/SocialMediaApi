@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg",
+      "PackagePath": "staticwebassets\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Host.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Host.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Host.props",
+      "PackagePath": "build\\Host.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Host.props",
+      "PackagePath": "buildMultiTargeting\\Host.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Host.props",
+      "PackagePath": "buildTransitive\\Host.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
