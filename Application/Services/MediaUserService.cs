@@ -1,4 +1,5 @@
 ﻿using Application.Dtos;
+using Application.Interfaces.CurrentUser;
 using Application.Interfaces.External;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
@@ -12,17 +13,117 @@ namespace Application.Services
     {
         private readonly IMediaUserRepository _mediaUserRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IPostRepository _postRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IReplyRepository _replyRepository;
+        private readonly ILikeRepository _likeRepository;
+        private readonly ICurrentUser _currentUser;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPasswordHasher<string> _passwordHasher;
         private readonly IUploadService _uploadService;
-        public MediaUserService(IMediaUserRepository mediaUserRepository, IUserRepository userRepository, IUnitOfWork unitOfWork, IPasswordHasher<string> passwordHasher, IUploadService uploadService)
+        public MediaUserService(IMediaUserRepository mediaUserRepository,ILikeRepository likeRepository,IReplyRepository replyRepository, IUserRepository userRepository,IPostRepository postRepository, ICommentRepository commentRepository, ICurrentUser currentUser, IUnitOfWork unitOfWork, IPasswordHasher<string> passwordHasher, IUploadService uploadService)
         {
             _mediaUserRepository = mediaUserRepository;
             _userRepository = userRepository;
+            _postRepository = postRepository;
+            _commentRepository = commentRepository;
+            _likeRepository = likeRepository;
+            _replyRepository = replyRepository;
+            _currentUser = currentUser;
             _unitOfWork = unitOfWork;
             _passwordHasher = passwordHasher;
             _uploadService = uploadService;
         }
+
+        public async Task<Result<MediaUserDto>> DeleteAccount(DeleteAccountRequestModel delete)
+        {
+            var mediaUser = await _mediaUserRepository.GetAsync(delete.MediaUserId);
+            if(mediaUser == null)
+            {
+                return new Result<MediaUserDto>
+                {
+                    Message = "Account delete failed",
+                    Data = null,
+                    Status = false
+                };
+            }
+
+            var user = await _userRepository.GetAsync(u => u.Email == mediaUser.Email);
+            if(user == null)
+            {
+                return new Result<MediaUserDto>
+                {
+                    Message = "Error: Delete failed",
+                    Data = null,
+                    Status = false
+                };
+            }
+
+            var posts = await _postRepository.GetAllAsync(mediaUser.Id);
+            if(posts.Count != 0)
+            {
+                foreach(var post in posts)
+                {
+                    _postRepository.Delete(post);
+                    await _unitOfWork.SaveAsync();
+                }
+            }
+
+            user.IsDeleted = true;
+            mediaUser.IsDeleted = true;
+
+            _userRepository.Update(user);
+            _mediaUserRepository.Update(mediaUser);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<MediaUserDto>
+            {
+                Message = "Account deleted successfully",
+                Data = { },
+                Status = true
+            };
+        }
+
+        public async Task<Result<MediaUserDto>> EditDetails(EditRequestModel edit)
+        {
+            var currentUserEmail = _currentUser.GetCurrentUser();
+            if (currentUserEmail == null) return new Result<MediaUserDto> { Message = "Error: Try again", Data = null, Status = false };
+
+            var mediaUser = await _mediaUserRepository.GetAsync(m => m.Email == currentUserEmail);
+            if (mediaUser == null) return new Result<MediaUserDto> { Message = "Error: Failed to edit details", Data = null, Status = false };
+
+            if (!string.IsNullOrEmpty(edit.FirstName)) { mediaUser.FirstName = edit.FirstName; }
+
+            if(!string.IsNullOrEmpty(edit.LastName)) { mediaUser.LastName = edit.LastName; }
+
+            if(!string.IsNullOrEmpty(edit.UserName)) { mediaUser.UserName = edit.UserName; }
+
+            if(!string.IsNullOrEmpty(edit.Address)) { mediaUser.Address = edit.Address; }
+
+            var user = await _userRepository.GetAsync(u => u.Email == currentUserEmail);
+            if (user == null) return new Result<MediaUserDto> { Message = "Error: Failed", Data = null, Status = false };
+
+            if(edit.ProfilePicture != null) { user.ImageUrl = await _uploadService.UploadProfileImageAsync(edit.ProfilePicture); }
+
+            if (edit.ProfilePicture == null || (edit.LastName == null && edit.FirstName == null && edit.UserName == null && edit.Address == null))
+                return new Result<MediaUserDto> { Message = "Details are required to edit", Data = null, Status = false };
+
+            user.ModifiedBy = currentUserEmail;
+            user.DateModified = DateTime.UtcNow;
+            mediaUser.ModifiedBy = currentUserEmail;
+            mediaUser.DateModified = DateTime.UtcNow;
+            _userRepository.Update(user);
+            _mediaUserRepository.Update(mediaUser);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<MediaUserDto>
+            {
+                Message = "Details update successfully",
+                Data = new MediaUserDto { CreatedBy = mediaUser.CreatedBy, DateOfBirth = mediaUser.DateOfBirth, Email = mediaUser.Email, FullName = mediaUser.FirstName + " " + mediaUser.LastName, Gender = mediaUser.Gender, Address = mediaUser.Address, DateCreated = mediaUser.DateCreated, Id = mediaUser.Id, IsDeleted = mediaUser.IsDeleted, UserName = mediaUser.UserName },
+                Status = true
+            };
+        }
+
         public async Task<Result<MediaUserDto>> RegisterUser(RegisterRequestModel model)
         {
             bool checkEmail = await _mediaUserRepository.CheckAsync(m => m.Email == model.Email);

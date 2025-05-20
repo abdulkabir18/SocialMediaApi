@@ -28,6 +28,11 @@ namespace Infrastructure.Persistense.Repositories
             return await _context.Set<Comment>().AsNoTracking().CountAsync(c => c.PostId == postId);
         }
 
+        public void Delete(Comment comment)
+        {
+            _context.Set<Comment>().Remove(comment);
+        }
+
         public async Task<ICollection<Comment>> GetAllAsync(Expression<Func<Comment, bool>> expression)
         {
             return await _context.Set<Comment>().AsNoTracking().Where(expression).OrderBy(c => c.DateCreated).ToListAsync();

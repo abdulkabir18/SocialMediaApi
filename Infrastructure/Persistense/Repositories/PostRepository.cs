@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistense.Context;
@@ -21,6 +22,11 @@ namespace Infrastructure.Persistense.Repositories
         public async Task<bool> CheckAsync(Guid id)
         {
             return await _context.Set<Post>().AsNoTracking().AnyAsync(p => p.Id == id);
+        }
+
+        public void Delete(Post post)
+        {
+            _context.Set<Post>().Remove(post);
         }
 
         public async Task<ICollection<Post>> GetAllAsync(Guid posterId)

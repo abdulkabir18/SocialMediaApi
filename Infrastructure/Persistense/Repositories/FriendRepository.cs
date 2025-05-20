@@ -18,6 +18,11 @@ namespace Infrastructure.Persistense.Repositories
             await _context.Set<Friend>().AddAsync(friend);
         }
 
+        public async Task<int> CountAsync(Expression<Func<Friend, bool>> expression)
+        {
+            return await _context.Set<Friend>().AsNoTracking().CountAsync(expression);
+        }
+
         public async Task<ICollection<Friend>> GetAllAsync()
         {
             return await _context.Set<Friend>().ToListAsync();

@@ -7,6 +7,7 @@ namespace Application.Interfaces.Repositories
     {
         Task AddAsync(Comment comment);
         void Update(Comment comment);
+        void Delete(Comment comment);
         Task<Comment?> GetAsync(Guid id);
         Task<int> CountAsync(Guid postId);
         Task<bool> CheckAsync(Guid id);

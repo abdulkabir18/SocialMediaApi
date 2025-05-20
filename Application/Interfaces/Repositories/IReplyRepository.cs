@@ -7,6 +7,7 @@ namespace Application.Interfaces.Repositories
     {
         Task AddAsync(Reply reply);
         void Update(Reply reply);
+        void Delete(Reply reply);
         Task<Reply?> GetAsync(Guid id);
         Task<ICollection<Reply>> GetAllAsync(Expression<Func<Reply, bool>> expression);
     }

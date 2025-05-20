@@ -15,11 +15,15 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
 
             builder.HasMany(c => c.Replies)
                .WithOne(r => r.Comment)
-               .HasForeignKey(r => r.CommentId);
+               .HasForeignKey(r => r.CommentId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.Likes)
                    .WithOne(l => l.Comment)
-                   .HasForeignKey(l => l.CommentId);
+                   .HasForeignKey(l => l.CommentId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Ignore(c => c.IsDeleted);
         }
     }
 }

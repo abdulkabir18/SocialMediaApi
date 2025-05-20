@@ -10,7 +10,6 @@ namespace Application.Dtos
         public required Guid CommentId { get; set; }
         public DateTime DateCreated { get; set; }
         public required string CreatedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public int LikeCount { get; set; }
     }
 
@@ -20,5 +19,17 @@ namespace Application.Dtos
         public required string Text { get; set; }
         [Required]
         public required Guid CommentId { get; set; }
+    }
+
+    public record EditReplyRequestModel
+    {
+        public string? Text { get; set; }
+        public Guid CommentId { get; set; }
+        public Guid ReplyId { get; set; }
+    }
+
+    public record DeleteReplyRequestModel
+    {
+        public required Guid ReplyId { get; set; }
     }
 }

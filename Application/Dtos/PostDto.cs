@@ -12,7 +12,6 @@ namespace Application.Dtos
         public required Guid PosterId { get; set; }
         public DateTime DateCreated { get; set; }
         public required string CreatedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public int CommentCount { get; set; }
         public int LikeCount { get; set; }
     }
@@ -25,5 +24,22 @@ namespace Application.Dtos
         public required ContentType ContentType { get; set; }
         public string? ContentText { get; set; }
         public IFormFile? Content { get; set; }
+    }
+
+    public record EditPostRequestModel
+    {
+        [Required]
+        public required Guid PostId { get; set; }
+        public string? Title { get; set; }
+        [Required]
+        public required ContentType ContentType { get; set; }
+        public string? ContentText { get; set; }
+        public IFormFile? Content { get; set; }
+    }
+
+    public record DeletePostRequestModel
+    {
+        [Required]
+        public required Guid PostId { get; set; }
     }
 }

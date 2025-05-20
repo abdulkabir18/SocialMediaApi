@@ -19,7 +19,7 @@ namespace Host.Controllers
         }
 
         [HttpPost("signup")]
-        public async Task<IActionResult> RegisterMediaUser([FromForm] RegisterRequestModel register)
+        public async Task<IActionResult> SignUpAccount([FromForm] RegisterRequestModel register)
         {
             var result = await _mediaUserService.RegisterUser(register);
 
@@ -27,6 +27,30 @@ namespace Host.Controllers
             {
                 return BadRequest(result);
             }
+            return Ok(new { result });
+        }
+
+        [HttpPatch("edit")]
+        [Authorize]
+        public async Task<IActionResult> EditAccount([FromForm] EditRequestModel edit)
+        {
+            var result = await _mediaUserService.EditDetails(edit);
+
+            if (!result.Status) return BadRequest(new { result });
+
+            return Ok(new { result });
+        }
+
+        [HttpDelete("delete")]
+        [Authorize]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var mediaUser = await _currentUser.GetCurrentMediaUser();
+            var delete = new DeleteAccountRequestModel { MediaUserId = mediaUser.Data!.Id };
+            var result = await _mediaUserService.DeleteAccount(delete);
+
+            if (!result.Status) return BadRequest(new { result });
+
             return Ok(new { result });
         }
 

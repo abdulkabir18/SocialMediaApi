@@ -40,10 +40,49 @@ namespace Application.Services
                 await _unitOfWork.SaveAsync();
 
                 return new Result<ReplyDto>
-                { Message = "Reply added successfully", Data = new ReplyDto { CommentId = reply.CommentId, Text = reply.Text,CreatedBy = reply.CreatedBy,ReplyerId = reply.ReplyerId,DateCreated = reply.DateCreated,Id = reply.Id,LikeCount = await _likeRepository.CountAsync(l => l.ReplyId == reply.Id && l.IsDeleted != true), IsDeleted = reply.IsDeleted}, Status = true };
+                { Message = "Reply added successfully", Data = new ReplyDto { CommentId = reply.CommentId, Text = reply.Text,CreatedBy = reply.CreatedBy,ReplyerId = reply.ReplyerId,DateCreated = reply.DateCreated,Id = reply.Id,LikeCount = await _likeRepository.CountAsync(l => l.ReplyId == reply.Id && l.IsDeleted != true)}, Status = true };
             }
             return new Result<ReplyDto>
             { Message = "Reply creation failed", Status = false, Data = null };
+        }
+
+        public async Task<Result<ReplyDto>> DeleteReply(DeleteReplyRequestModel model)
+        {
+            var reply = await _replyRepository.GetAsync(model.ReplyId);
+            if(reply == null) return new Result<ReplyDto> { Message = "Failed", Data=null, Status = false };
+
+            var mediaUser = await _currentUser.GetCurrentMediaUser();
+            if (mediaUser.Data == null || mediaUser.Data.Id != reply.ReplyerId) return new Result<ReplyDto> { Message = "Error: Record not found", Data = null, Status = false };
+
+            _replyRepository.Delete(reply);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<ReplyDto> { Message = "Deleted successfully", Data = { }, Status = true };
+        }
+
+        public async Task<Result<ReplyDto>> EditReply(EditReplyRequestModel model)
+        {
+            var checkComment = await _commentRepository.CheckAsync(model.CommentId);
+            if(!checkComment)
+            {
+                return new Result<ReplyDto> { Message = "Error: Action rejected", Data = null, Status = false };
+            }
+
+            var reply = await _replyRepository.GetAsync(model.ReplyId);
+            var mediaUser = await _currentUser.GetCurrentMediaUser();
+            if (reply == null || mediaUser.Data == null) return new Result<ReplyDto> { Message = "Error: Failed to get some datails", Data = null, Status = false };
+
+            if(reply.ReplyerId != mediaUser.Data.Id) return new Result<ReplyDto> { Message = "Error: No match record found", Data = null, Status = false };
+
+            if(!string.IsNullOrEmpty(model.Text)) { reply.Text = model.Text; }
+            else return new Result<ReplyDto> { Message = "No details to update with", Data = null, Status = false };
+
+            reply.DateModified = DateTime.Now;
+            reply.ModifiedBy = mediaUser.Data.FullName;
+            _replyRepository.Update(reply);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<ReplyDto> { Message = "Update successfully", Data = new ReplyDto { CommentId = reply.CommentId, CreatedBy = reply.ModifiedBy, ReplyerId = reply.ReplyerId, Text = reply.Text, DateCreated = reply.DateCreated, Id = reply.Id, LikeCount = await _likeRepository.CountAsync(r => r.ReplyId == reply.Id && r.IsDeleted != true) } };
         }
 
         public async Task<Result<ICollection<ReplyDto>>> GetReplies(Guid commentId)
@@ -57,27 +96,17 @@ namespace Application.Services
             ICollection<ReplyDto> replyDtos = [];
             foreach(var reply in replies)
             {
-                if(!reply.IsDeleted)
+                var replyDto = new ReplyDto
                 {
-                    var replyDto = new ReplyDto
-                    {
-                        CommentId = reply.CommentId,
-                        Text = reply.Text,
-                        CreatedBy = reply.CreatedBy,
-                        ReplyerId = reply.ReplyerId,
-                        IsDeleted = reply.IsDeleted,
-                        DateCreated = reply.DateCreated,
-                        Id = reply.Id,
-                        LikeCount = await _likeRepository.CountAsync(l => l.CommentId == commentId && l.IsDeleted != true)
-                    };
-                    replyDtos.Add(replyDto);
-                }
-            }
-
-            if (replyDtos.Count == 0)
-            {
-                return new Result<ICollection<ReplyDto>>
-                { Message = "Reply not avaliable", Data = null, Status = false };
+                    CommentId = reply.CommentId,
+                    Text = reply.Text,
+                    CreatedBy = reply.CreatedBy,
+                    ReplyerId = reply.ReplyerId,
+                    DateCreated = reply.DateCreated,
+                    Id = reply.Id,
+                    LikeCount = await _likeRepository.CountAsync(l => l.CommentId == commentId && l.IsDeleted != true)
+                };
+                replyDtos.Add(replyDto);
             }
 
             return new Result<ICollection<ReplyDto>>
@@ -94,7 +123,7 @@ namespace Application.Services
             }
 
             return new Result<ReplyDto>
-            { Message = "Found", Data = new ReplyDto { CommentId = reply.CommentId, IsDeleted = reply.IsDeleted, DateCreated = reply.DateCreated, Id = reply.Id,CreatedBy = reply.CreatedBy,ReplyerId = reply.ReplyerId,Text = reply.Text, LikeCount = await _likeRepository.CountAsync(l => l.ReplyId == reply.Id && l.IsDeleted != true) }, Status = true };
+            { Message = "Found", Data = new ReplyDto { CommentId = reply.CommentId, DateCreated = reply.DateCreated, Id = reply.Id,CreatedBy = reply.CreatedBy,ReplyerId = reply.ReplyerId,Text = reply.Text, LikeCount = await _likeRepository.CountAsync(l => l.ReplyId == reply.Id && l.IsDeleted != true) }, Status = true };
         }
     }
 }

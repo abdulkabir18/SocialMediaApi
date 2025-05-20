@@ -17,7 +17,7 @@
   },
   {
     "ContainingType": "Host.Controllers.CommentController",
-    "Method": "GetCommentPost",
+    "Method": "ViewCommentPost",
     "RelativePath": "api/Comment/comment/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -33,7 +33,7 @@
   },
   {
     "ContainingType": "Host.Controllers.CommentController",
-    "Method": "GetCommentsPost",
+    "Method": "ViewCommentsPost",
     "RelativePath": "api/Comment/comments/{postId}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -42,6 +42,38 @@
       {
         "Name": "postId",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.CommentController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/Comment/delete/{model}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.CommentController",
+    "Method": "EditComment",
+    "RelativePath": "api/Comment/edit",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Application.Dtos.EditCommentRequestModel",
         "IsRequired": true
       }
     ],
@@ -107,7 +139,53 @@
   },
   {
     "ContainingType": "Host.Controllers.MediaUserController",
-    "Method": "RegisterMediaUser",
+    "Method": "DeleteAccount",
+    "RelativePath": "api/MediaUser/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.MediaUserController",
+    "Method": "EditAccount",
+    "RelativePath": "api/MediaUser/edit",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FirstName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "LastName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePicture",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.MediaUserController",
+    "Method": "SignUpAccount",
     "RelativePath": "api/MediaUser/signup",
     "HttpMethod": "POST",
     "IsController": true,
@@ -204,7 +282,33 @@
   },
   {
     "ContainingType": "Host.Controllers.PostController",
-    "Method": "GetPost",
+    "Method": "DeletePost",
+    "RelativePath": "api/Post/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.PostController",
+    "Method": "EditPost",
+    "RelativePath": "api/Post/edit",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestModel",
+        "Type": "Application.Dtos.EditPostRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.PostController",
+    "Method": "ViewPost",
     "RelativePath": "api/Post/guid:id",
     "HttpMethod": "GET",
     "IsController": true,
@@ -220,7 +324,7 @@
   },
   {
     "ContainingType": "Host.Controllers.PostController",
-    "Method": "GetAllPosts",
+    "Method": "ViewAllPosts",
     "RelativePath": "api/Post/posts",
     "HttpMethod": "GET",
     "IsController": true,
@@ -230,12 +334,92 @@
   },
   {
     "ContainingType": "Host.Controllers.PostController",
-    "Method": "GetPosts",
+    "Method": "ViewPosts",
     "RelativePath": "api/Post/userposts",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.ReplyController",
+    "Method": "AddReply",
+    "RelativePath": "api/Reply",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Application.Dtos.AddReplyRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.ReplyController",
+    "Method": "DeleteReply",
+    "RelativePath": "api/Reply/delete/{model}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.ReplyController",
+    "Method": "EditReply",
+    "RelativePath": "api/Reply/edit",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Application.Dtos.EditReplyRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.ReplyController",
+    "Method": "GetReplies",
+    "RelativePath": "api/Reply/replies/{commentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Host.Controllers.ReplyController",
+    "Method": "GetReply",
+    "RelativePath": "api/Reply/reply/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

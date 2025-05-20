@@ -155,3 +155,4 @@ C:\Users\USER\Desktop\sysbeamsExecrise\Projects\SocialMedia\Host\bin\Debug\net8.
 C:\Users\USER\Desktop\sysbeamsExecrise\Projects\SocialMedia\Host\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\USER\Desktop\sysbeamsExecrise\Projects\SocialMedia\Host\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\USER\Desktop\sysbeamsExecrise\Projects\SocialMedia\Host\bin\Debug\net8.0\Host.staticwebassets.runtime.json
+C:\Users\USER\Desktop\sysbeamsExecrise\Projects\SocialMedia\Host\obj\Debug\net8.0\Host.sourcelink.json

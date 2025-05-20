@@ -45,7 +45,7 @@ namespace Application.Services
                     return new Result<CommentDto>
                     {
                         Message = "Post commented successfully",
-                        Data = new CommentDto { CommenterId = comment.CommenterId, CreatedBy = comment.CreatedBy, PostId = comment.PostId, Text = comment.Text, DateCreated = comment.DateCreated, Id = comment.Id, IsDeleted = comment.IsDeleted, LikeCount = 0 },
+                        Data = new CommentDto { CommenterId = comment.CommenterId, CreatedBy = comment.CreatedBy, PostId = comment.PostId, Text = comment.Text, DateCreated = comment.DateCreated, Id = comment.Id,LikeCount = 0 },
                         Status = true
                     };
                 }
@@ -58,6 +58,53 @@ namespace Application.Services
                 Status = false
             };
         }
+
+        public async Task<Result<CommentDto>> DeleteComment(DeleteCommentRequestModel delete)
+        {
+            var comment = await _commentRepository.GetAsync(delete.CommentId);
+            if(comment ==  null)
+            {
+                return new Result<CommentDto>
+                { Message = "Error: Nothing to delete", Data = null, Status = false };
+            }
+
+            var mediaUser = await _currentUser.GetCurrentMediaUser();
+            if(mediaUser.Data == null || mediaUser.Data.Id != comment.CommenterId)
+                return new Result<CommentDto> { Message = "Error: No match record found", Data = null,Status = false};
+
+            _commentRepository.Delete(comment);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<CommentDto>
+            { Message = "Comment deleted successfully", Data = { }, Status = true };
+        }
+
+        public async Task<Result<CommentDto>> EditComment(EditCommentRequestModel edit)
+        {
+            if (edit.Text == null || edit?.CommentId == null && edit?.PostId == null) return new Result<CommentDto>
+            { Message = "No details to update with", Data = null, Status = false };
+
+            var checkPost = await _postRepository.CheckAsync(edit.PostId);
+            if (!checkPost) return new Result<CommentDto> { Message = "Error: Verification failed", Data = null, Status = false };
+
+            var comment = await _commentRepository.GetAsync(edit.CommentId);
+            if (comment == null) return new Result<CommentDto> { Message = "Error: No comment to update", Data = null, Status = false };
+
+            var mediaUser = await _currentUser.GetCurrentMediaUser();
+            if (mediaUser.Data == null || mediaUser.Data.Id != comment.CommenterId) return new Result<CommentDto>
+            { Message = "Error: Verification failed", Data = null, Status = false };
+
+            if(!string.IsNullOrEmpty(edit.Text)) { comment.Text = edit.Text; }
+
+            comment.DateModified = DateTime.UtcNow;
+            comment.ModifiedBy = mediaUser.Data.FullName;
+            _commentRepository.Update(comment);
+            await _unitOfWork.SaveAsync();
+
+            return new Result<CommentDto>
+            { Status = true, Message = "Comment update successfully", Data = new CommentDto { CommenterId = comment.CommenterId, CreatedBy =  comment.ModifiedBy, PostId = comment.PostId, Text = comment.Text, DateCreated = comment.DateCreated, Id = comment.Id, LikeCount = await _likeRepository.CountAsync(c => c.CommentId == comment.Id && c.IsDeleted != true)} };
+        }
+
         public async Task<Result<ICollection<CommentDto>>> ViewAllComments(Guid postId)
         {
             var comments = await _commentRepository.GetAllAsync(c => c.PostId == postId);
@@ -74,26 +121,18 @@ namespace Application.Services
             ICollection<CommentDto> commentDtos = [];
             foreach (var comment in comments)
             {
-                if(!comment.IsDeleted)
+                var commentDto = new CommentDto
                 {
-                    var commentDto = new CommentDto
-                    {
-                        CommenterId = comment.CommenterId,
-                        CreatedBy = comment.CreatedBy,
-                        PostId = comment.PostId,
-                        Text = comment.Text,
-                        DateCreated = comment.DateCreated,
-                        Id = comment.Id,
-                        IsDeleted = comment.IsDeleted,
-                        LikeCount = await _likeRepository.CountAsync(l => l.CommentId == comment.Id)
-                    };
-                    commentDtos.Add(commentDto);
-                }
+                    CommenterId = comment.CommenterId,
+                    CreatedBy = comment.CreatedBy,
+                    PostId = comment.PostId,
+                    Text = comment.Text,
+                    DateCreated = comment.DateCreated,
+                    Id = comment.Id,
+                    LikeCount = await _likeRepository.CountAsync(l => l.CommentId == comment.Id && l.IsDeleted != true)
+                };
+                commentDtos.Add(commentDto);
             }
-
-            if(commentDtos.Count == 0)
-                return new Result<ICollection<CommentDto>> { Message = "No comment avaliable", Data = null, Status = false };
-
             return new Result<ICollection<CommentDto>>
             { Message = "Comments loading...",Data = commentDtos, Status = true };
         }
@@ -118,8 +157,7 @@ namespace Application.Services
                     Text = comment.Text,
                     DateCreated = comment.DateCreated,
                     Id = comment.Id,
-                    IsDeleted = comment.IsDeleted,
-                    LikeCount = await _likeRepository.CountAsync(l => l.CommentId == comment.Id)
+                    LikeCount = await _likeRepository.CountAsync(l => l.CommentId == comment.Id && l.IsDeleted != true)
                 },
                 Status = true
             };

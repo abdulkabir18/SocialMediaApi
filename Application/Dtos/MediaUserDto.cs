@@ -16,7 +16,6 @@ namespace Application.Dtos
         public required string CreatedBy { get; set; }
         public bool IsDeleted { get; set; }
     }
-
     public record RegisterRequestModel
     {
         [Required]
@@ -46,4 +45,20 @@ namespace Application.Dtos
         public required string ConfirmPassword { get; set; }
         public IFormFile? ProfilePicture { get; set; }
     }
+
+    public record EditRequestModel
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? UserName { get; set; }
+        public string? Address { get; set; }
+        public IFormFile? ProfilePicture { get; set; }
+    }
+
+    public record DeleteAccountRequestModel
+    {
+        [Required]
+        public required Guid MediaUserId { get; set; }
+    }
+
 }

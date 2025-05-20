@@ -7,6 +7,7 @@ namespace Application.Interfaces.Repositories
     {
         Task AddAsync(Post post);
         void Update(Post post);
+        void Delete(Post post);
         Task<Post?> GetAsync(Guid id);
         Task<Post?> GetAsync(Expression<Func<Post, bool>> expression);
         Task<bool> CheckAsync(Guid id);

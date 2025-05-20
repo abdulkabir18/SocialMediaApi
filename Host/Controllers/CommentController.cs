@@ -19,7 +19,6 @@ namespace Host.Controllers
 
         [HttpPost]
         [Authorize]
-
         public async Task<IActionResult> AddComment([FromBody] AddCommentRequestModel model)
         {
             var result = await _commentService.CommentPost(model);
@@ -31,7 +30,7 @@ namespace Host.Controllers
 
         [HttpGet("comment/{id}")]
 
-        public async Task<IActionResult> GetCommentPost([FromRoute] Guid id)
+        public async Task<IActionResult> ViewCommentPost([FromRoute] Guid id)
         {
             var result = await _commentService.ViewComment(id);
 
@@ -42,13 +41,29 @@ namespace Host.Controllers
 
         [HttpGet("comments/{postId}")]
 
-        public async Task<IActionResult> GetCommentsPost([FromRoute] Guid postId)
+        public async Task<IActionResult> ViewCommentsPost([FromRoute] Guid postId)
         {
             var result = await _commentService.ViewAllComments(postId);
 
             if (!result.Status) return NotFound(result);
 
             return Ok(new { result });
+        }
+
+        [HttpPatch("edit")]
+        [Authorize]
+        public async Task<IActionResult> EditComment([FromBody]  EditCommentRequestModel model)
+        {
+            var result = await _commentService.EditComment(model);
+            if(!result.Status) return BadRequest(new {result}); return Ok(new { result });
+        }
+
+        [HttpDelete("delete/{model}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteComment([FromRoute] DeleteCommentRequestModel model)
+        {
+            var result = await _commentService.DeleteComment(model);
+            if (!result.Status) return BadRequest(new { result }); return Ok(new { result });
         }
     }
 }

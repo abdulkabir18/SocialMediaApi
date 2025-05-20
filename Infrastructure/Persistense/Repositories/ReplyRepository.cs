@@ -18,6 +18,11 @@ namespace Infrastructure.Persistense.Repositories
             await _context.Set<Reply>().AddAsync(reply);
         }
 
+        public void Delete(Reply reply)
+        {
+            _context.Set<Reply>().Remove(reply);
+        }
+
         public async Task<ICollection<Reply>> GetAllAsync(Expression<Func<Reply, bool>> expression)
         {
             return await _context.Set<Reply>().AsNoTracking().Where(expression).OrderBy(r => r.DateCreated).ToListAsync();

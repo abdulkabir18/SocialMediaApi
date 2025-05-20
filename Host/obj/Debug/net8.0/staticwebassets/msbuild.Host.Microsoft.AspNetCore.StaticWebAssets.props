@@ -1,5 +1,41 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadFiles\Images\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Host</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Host</BasePath>
+      <RelativePath>UploadFiles/Images/3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88mb5imuye</Fingerprint>
+      <Integrity>SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadFiles\Images\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadProfiles\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Host</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Host</BasePath>
+      <RelativePath>UploadProfiles/2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadProfiles\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\UploadProfiles\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Host</SourceId>

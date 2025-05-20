@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5sxMuDkRsaCTdFo1Lq4MG6NKTG987CBTnJgU+0oAMOo=",
+  "Hash": "obqAQ9ZATo4U5ZulD2jm1xtI/YzZLkbOysGkWmk6BK8=",
   "Source": "Host",
   "BasePath": "_content/Host",
   "Mode": "Default",
@@ -16,6 +16,48 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg",
+      "SourceId": "Host",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\",
+      "BasePath": "_content/Host",
+      "RelativePath": "UploadFiles/Images/3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "88mb5imuye",
+      "Integrity": "SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
+      "SourceId": "Host",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\",
+      "BasePath": "_content/Host",
+      "RelativePath": "UploadProfiles/2177d41b-241c-4ae7-901a-1860af5c1ba0 string#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png"
+    },
     {
       "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg",
       "SourceId": "Host",
@@ -39,6 +81,170 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "UploadFiles/Images/3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.88mb5imuye.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "164738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 10:44:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "88mb5imuye"
+        },
+        {
+          "Name": "label",
+          "Value": "UploadFiles/Images/3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA="
+        }
+      ]
+    },
+    {
+      "Route": "UploadFiles/Images/3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "164738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 10:44:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA="
+        }
+      ]
+    },
+    {
+      "Route": "UploadProfiles/2177d41b-241c-4ae7-901a-1860af5c1ba0 string.5ipweew5fc.png",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 12:13:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "UploadProfiles/2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "UploadProfiles/2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 12:13:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
     {
       "Route": "UploadProfiles/9d53b294-91ff-4574-9993-fe990302bfa9 Mine.iklyldq125.jpg",
       "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg",
