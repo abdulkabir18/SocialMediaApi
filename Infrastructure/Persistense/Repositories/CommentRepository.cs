@@ -35,7 +35,7 @@ namespace Infrastructure.Persistense.Repositories
 
         public async Task<ICollection<Comment>> GetAllAsync(Expression<Func<Comment, bool>> expression)
         {
-            return await _context.Set<Comment>().AsNoTracking().Where(expression).OrderBy(c => c.DateCreated).ToListAsync();
+            return await _context.Set<Comment>().AsNoTracking().Where(expression).OrderByDescending(c => c.DateCreated).ToListAsync();
         }
 
         public async Task<Comment?> GetAsync(Guid id)

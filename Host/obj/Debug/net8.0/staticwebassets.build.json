@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "obqAQ9ZATo4U5ZulD2jm1xtI/YzZLkbOysGkWmk6BK8=",
+  "Hash": "KzrsiuWlYQ+XAaFMq1ESlBAVpVdUICjkSWIzhSYgy3c=",
   "Source": "Host",
   "BasePath": "_content/Host",
   "Mode": "Default",
@@ -36,6 +36,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg",
+      "SourceId": "Host",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\",
+      "BasePath": "_content/Host",
+      "RelativePath": "UploadFiles/Images/88014048-57f8-44f7-beda-c144d00ef508 1696190127984#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3prevw93zj",
+      "Integrity": "t9IaIs00I6tZZyi1OLSuSyggt23rGDHt4cBjJIDoaIc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg"
     },
     {
       "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
@@ -78,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg",
+      "SourceId": "Host",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\",
+      "BasePath": "_content/Host",
+      "RelativePath": "UploadProfiles/c234dac4-3285-479b-aabe-ef8d67832633 1696607862494#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zph6pqsjct",
+      "Integrity": "N4B+R/UG9Z4ADv2HojJEeEm4ZOGEEouTtl1Ptrw/2z8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg"
     }
   ],
   "Endpoints": [
@@ -160,6 +202,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-SNJYw16oh04w3uMJeLEPq+x4QpGzZ/QfAXYqx35Y+cA="
+        }
+      ]
+    },
+    {
+      "Route": "UploadFiles/Images/88014048-57f8-44f7-beda-c144d00ef508 1696190127984.3prevw93zj.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23892"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t9IaIs00I6tZZyi1OLSuSyggt23rGDHt4cBjJIDoaIc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 13:55:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3prevw93zj"
+        },
+        {
+          "Name": "label",
+          "Value": "UploadFiles/Images/88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-t9IaIs00I6tZZyi1OLSuSyggt23rGDHt4cBjJIDoaIc="
+        }
+      ]
+    },
+    {
+      "Route": "UploadFiles/Images/88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23892"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t9IaIs00I6tZZyi1OLSuSyggt23rGDHt4cBjJIDoaIc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 13:55:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-t9IaIs00I6tZZyi1OLSuSyggt23rGDHt4cBjJIDoaIc="
         }
       ]
     },
@@ -324,6 +448,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-sgrprQFE1ko5p5WkMHqWCOaz8LZQF+s+XAfUd7Yq3W4="
+        }
+      ]
+    },
+    {
+      "Route": "UploadProfiles/c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21727"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N4B+R/UG9Z4ADv2HojJEeEm4ZOGEEouTtl1Ptrw/2z8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 13:53:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-N4B+R/UG9Z4ADv2HojJEeEm4ZOGEEouTtl1Ptrw/2z8="
+        }
+      ]
+    },
+    {
+      "Route": "UploadProfiles/c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.zph6pqsjct.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21727"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N4B+R/UG9Z4ADv2HojJEeEm4ZOGEEouTtl1Ptrw/2z8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 13:53:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zph6pqsjct"
+        },
+        {
+          "Name": "label",
+          "Value": "UploadProfiles/c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-N4B+R/UG9Z4ADv2HojJEeEm4ZOGEEouTtl1Ptrw/2z8="
         }
       ]
     }

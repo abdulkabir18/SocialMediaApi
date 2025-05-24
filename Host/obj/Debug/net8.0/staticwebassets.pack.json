@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\UploadFiles\\Images\\3bf8dc78-7fc6-4cbe-93f7-90ba62b6d2ee Happy Day.jpg"
     },
     {
+      "Id": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg",
+      "PackagePath": "staticwebassets\\UploadFiles\\Images\\88014048-57f8-44f7-beda-c144d00ef508 1696190127984.jpg"
+    },
+    {
       "Id": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png",
       "PackagePath": "staticwebassets\\UploadProfiles\\2177d41b-241c-4ae7-901a-1860af5c1ba0 string.png"
     },
     {
       "Id": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg",
       "PackagePath": "staticwebassets\\UploadProfiles\\9d53b294-91ff-4574-9993-fe990302bfa9 Mine.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\sysbeamsExecrise\\Projects\\SocialMedia\\Host\\wwwroot\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg",
+      "PackagePath": "staticwebassets\\UploadProfiles\\c234dac4-3285-479b-aabe-ef8d67832633 1696607862494.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Host.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

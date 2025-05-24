@@ -25,7 +25,7 @@ namespace Infrastructure.Persistense.Repositories
 
         public async Task<ICollection<Like>> GetAllAsync(Expression<Func<Like, bool>> expression)
         {
-            return await _context.Set<Like>().AsNoTracking().Where(expression).OrderBy(l => l.DateCreated).ToListAsync();
+            return await _context.Set<Like>().AsNoTracking().Where(expression).OrderByDescending(l => l.DateCreated).ToListAsync();
         }
 
         public async Task<Like?> GetAsync(Guid id)

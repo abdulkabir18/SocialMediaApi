@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public class Post : AuditableEntity
     {
-        public required string Title { get; set; }
+        //public required string Title { get; set; }
         public required ContentType ContentType { get; set; }
         public required string Content { get; set; }
         public required Guid PosterId { get; set; }

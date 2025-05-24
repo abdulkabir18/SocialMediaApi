@@ -6,6 +6,7 @@
         public required string Email { get; set; }
         public required string Password { get; set; }
         public required string Salt { get; set; }
-        public string? ImageUrl {  get; set; }
+        public bool IsEmailConfirmed { get; set; }
+        public bool IsPhoneNumberConfirmed { get; set; }
     }
 }

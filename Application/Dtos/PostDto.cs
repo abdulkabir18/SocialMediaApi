@@ -9,6 +9,7 @@ namespace Application.Dtos
         public Guid Id { get; set; }
         public required string Title { get; set; }
         public required string Content { get; set; }
+        public required ContentType ContentType { get; set; }
         public required Guid PosterId { get; set; }
         public DateTime DateCreated { get; set; }
         public required string CreatedBy { get; set; }

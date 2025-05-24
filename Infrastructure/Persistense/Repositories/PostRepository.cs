@@ -31,12 +31,12 @@ namespace Infrastructure.Persistense.Repositories
 
         public async Task<ICollection<Post>> GetAllAsync(Guid posterId)
         {
-            return await _context.Set<Post>().AsNoTracking().Where(p => p.PosterId  == posterId).OrderBy(p => p.DateCreated).ToListAsync();
+            return await _context.Set<Post>().AsNoTracking().Where(p => p.PosterId  == posterId).OrderByDescending(p => p.DateCreated).ToListAsync();
         }
 
         public async Task<ICollection<Post>> GetAllAsync()
         {
-            return await _context.Set<Post>().AsNoTracking().OrderBy(p => p.DateCreated).ToListAsync();
+            return await _context.Set<Post>().AsNoTracking().OrderByDescending(p => p.DateCreated).ToListAsync();
         }
 
         public async Task<Post?> GetAsync(Guid id)

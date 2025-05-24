@@ -25,12 +25,12 @@ namespace Infrastructure.Persistense.Repositories
 
         public async Task<ICollection<Friend>> GetAllAsync()
         {
-            return await _context.Set<Friend>().ToListAsync();
+            return await _context.Set<Friend>().OrderByDescending(f => f.CreatedBy).ToListAsync();
         }
 
         public async Task<ICollection<Friend>> GetAllAsync(Expression<Func<Friend, bool>> expression)
         {
-            return await _context.Set<Friend>().Where(expression).ToListAsync();
+            return await _context.Set<Friend>().Where(expression).OrderByDescending(f => f.DateCreated).ToListAsync();
         }
 
         public async Task<Friend?> GetAsync(Guid id)

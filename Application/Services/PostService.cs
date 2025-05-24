@@ -57,7 +57,7 @@ namespace Application.Services
                 return new Result<PostDto>
                 {
                     Message = "Post Created Successfully",
-                    Data = new PostDto { Content = post.Content, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title,CommentCount = 0,LikeCount = 0, Id = post.Id,DateCreated = post.DateCreated},
+                    Data = new PostDto { Content = post.Content,ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title,CommentCount = 0,LikeCount = 0, Id = post.Id,DateCreated = post.DateCreated},
                     Status = true
                 };
             }
@@ -78,7 +78,7 @@ namespace Application.Services
                 return new Result<PostDto>
                 {
                     Message = "Post Created Successfully",
-                    Data = new PostDto { Content = post.Content, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = 0, LikeCount = 0, Id = post.Id, DateCreated = post.DateCreated},
+                    Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = 0, LikeCount = 0, Id = post.Id, DateCreated = post.DateCreated},
                     Status = true
                 };
             }
@@ -140,7 +140,7 @@ namespace Application.Services
             _postRepository.Update(post);
             await _unitOfWork.SaveAsync();
 
-            return new Result<PostDto> { Message = "Post update successfully", Data = new PostDto { Content = post.Content, CreatedBy = post.ModifiedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), Id = post.Id, DateCreated = post.DateCreated, LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && post.IsDeleted != true) }, Status = true };
+            return new Result<PostDto> { Message = "Post update successfully", Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.ModifiedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), Id = post.Id, DateCreated = post.DateCreated, LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && post.IsDeleted != true) }, Status = true };
         }
 
         public async Task<Result<ICollection<PostDto>>> ViewAllPosts(Guid mediaUserId)
@@ -157,7 +157,9 @@ namespace Application.Services
             foreach(var post in posts)
             {
                 var postDto = new PostDto
-                { Content = post.Content,
+                { 
+                    Content = post.Content,
+                    ContentType = post.ContentType,
                     CreatedBy = post.CreatedBy,
                     PosterId = post.PosterId,
                     Title = post.Title,
@@ -189,6 +191,7 @@ namespace Application.Services
                 var postDto = new PostDto
                 {
                     Content = post.Content,
+                    ContentType = post.ContentType,
                     CreatedBy = post.CreatedBy,
                     PosterId = post.PosterId,
                     Title = post.Title,
@@ -216,7 +219,7 @@ namespace Application.Services
 
             return new Result<PostDto?>
             {
-                Data = new PostDto { Content = post.Content, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && l.IsDeleted != true), Id = post.Id, DateCreated = post.DateCreated},
+                Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && l.IsDeleted != true), Id = post.Id, DateCreated = post.DateCreated},
                 Message = "Found",
                 Status = true
             };

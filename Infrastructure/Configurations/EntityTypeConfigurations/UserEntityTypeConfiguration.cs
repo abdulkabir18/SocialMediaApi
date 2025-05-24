@@ -9,6 +9,7 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(u => u.Id);
+            builder.Property(u => u.Salt).IsRequired();
             builder.HasIndex(u => u.PhoneNumber).IsUnique();
             builder.Property(u => u.Email).IsRequired();
             builder.Property(u => u.Password).IsRequired();
