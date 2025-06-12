@@ -4,7 +4,7 @@ namespace Application.Interfaces.CurrentUser
 {
     public interface ICurrentUser
     {
-        string GetCurrentUser();
+        string GetCurrentUserEmail();
         Task<Result<MediaUserDto?>> GetCurrentMediaUser();
     }
 }

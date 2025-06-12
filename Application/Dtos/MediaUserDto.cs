@@ -6,15 +6,16 @@ namespace Application.Dtos
     public record MediaUserDto
     {
         public Guid Id { get; set; }
+        public string? ProfilePictureUrl { get; set; }
         public required string FullName { get; set; }
-        public required string Email { get; set; }
         public string? UserName { get; set; }
+        public string? Bio { get; set; }
+        public required string Email { get; set; }
         public string? Address { get; set; }
         public required string Gender { get; set; }
         public required DateOnly DateOfBirth { get; set; }
-        public DateTime DateCreated { get; set; }
-        public required string CreatedBy { get; set; }
-        public bool IsDeleted { get; set; }
+        public DateTime DateJoined { get; set; }
+        public int FriendCount { get; set; }
     }
     public record RegisterRequestModel
     {
@@ -25,8 +26,9 @@ namespace Application.Dtos
         [Required]
         [EmailAddress]
         public required string Email { get; set; }
-        public string? UserName { get; set; }
-        public string? Address { get; set; }
+        public string Bio { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
         [Required]
         [MaxLength(7)]
         public required string Gender { get; set; }

@@ -18,9 +18,9 @@ namespace Infrastructure.Persistense.Repositories
             await _context.Set<User>().AddAsync(user);
         }
 
-        public async Task<bool> CheckAsyncPhoneNumber(string phoneNumber)
+        public async Task<bool> CheckAsync(Expression<Func<User, bool>> expression)
         {
-            return await _context.Set<User>().AsNoTracking().AnyAsync(u => u.PhoneNumber == phoneNumber);
+            return await _context.Set<User>().AsNoTracking().AnyAsync(expression);
         }
 
         public async Task<User?> GetAsync(Guid id)

@@ -10,6 +10,7 @@ namespace Application.Interfaces.Repositories
         Task<MediaUser?> GetAsync(Guid id);
         Task<bool> CheckAsync(Expression<Func<MediaUser, bool>> expression);
         Task<MediaUser?> GetAsync(Expression<Func<MediaUser, bool>> expression);
+        Task<ICollection<MediaUser>> GetAllAsync(Expression<Func<MediaUser, bool>> expression);
         Task<ICollection<MediaUser>> GetAllAsync();
     }
 }

@@ -8,6 +8,8 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("users");
+
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Salt).IsRequired();
             builder.HasIndex(u => u.PhoneNumber).IsUnique();

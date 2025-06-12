@@ -28,6 +28,11 @@ namespace Infrastructure.Persistense.Repositories
             return await _context.Set<MediaUser>().AsNoTracking().ToListAsync();
         }
 
+        public async Task<ICollection<MediaUser>> GetAllAsync(Expression<Func<MediaUser, bool>> expression)
+        {
+            return await _context.Set<MediaUser>().AsNoTracking().Where(expression).ToListAsync();  
+        }
+
         public async Task<MediaUser?> GetAsync(Guid id)
         {
             return await _context.Set<MediaUser>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

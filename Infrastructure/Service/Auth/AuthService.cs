@@ -25,8 +25,7 @@ namespace Infrastructure.Service.Auth
             {
                 new(ClaimTypes.NameIdentifier, model.Id.ToString()),
                 new(ClaimTypes.MobilePhone, model.PhoneNumber),
-                new(ClaimTypes.Email, model.Email),
-                new("Image",model.ImageUrl!)
+                new(ClaimTypes.Email, model.Email)
             };
             var token = new JwtSecurityToken(_jWTSettings.Issuer, _jWTSettings.Audience, claims, null, DateTime.Now.AddMinutes(Convert.ToDouble(_jWTSettings.ExpiryInMinutes)), credential);
             return new JwtSecurityTokenHandler().WriteToken(token);

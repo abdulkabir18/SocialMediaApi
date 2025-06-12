@@ -18,16 +18,16 @@ namespace Infrastructure.Service.CurrentUser
 
         public async Task<Result<MediaUserDto?>> GetCurrentMediaUser()
         {
-            string userEmail = GetCurrentUser();
+            string userEmail = GetCurrentUserEmail();
             if(userEmail != null)
             {
-                var mediaUser = await _mediaUserRepository.GetAsync(m => m.Email == userEmail);
+                var mediaUser = await _mediaUserRepository.GetAsync(m => m.Email == userEmail && !m.IsDeleted);
                 if(mediaUser != null)
                 {
                     return new Result<MediaUserDto?>
                     {
                         Message = "Retrived data",
-                        Data = new MediaUserDto { CreatedBy = mediaUser.CreatedBy, DateOfBirth = mediaUser.DateOfBirth, Email = mediaUser.Email, FullName = mediaUser.FirstName + " " + mediaUser.LastName, Gender = mediaUser.Gender, Address = mediaUser.Address, Id = mediaUser.Id, DateCreated = mediaUser.DateCreated, IsDeleted = mediaUser.IsDeleted, UserName = mediaUser.UserName },
+                        Data = new MediaUserDto {DateOfBirth = mediaUser.DateOfBirth, Email = mediaUser.Email, FullName = mediaUser.FirstName + " " + mediaUser.LastName, Gender = mediaUser.Gender, Address = mediaUser.Address, Id = mediaUser.Id, DateJoined = mediaUser.DateCreated, UserName = mediaUser.UserName },
                         Status = true
                     };
                 }
@@ -40,7 +40,7 @@ namespace Infrastructure.Service.CurrentUser
             };
         }
 
-        public string GetCurrentUser()
+        public string GetCurrentUserEmail()
         {
             //var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
             var userEmail = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email)!.Value;

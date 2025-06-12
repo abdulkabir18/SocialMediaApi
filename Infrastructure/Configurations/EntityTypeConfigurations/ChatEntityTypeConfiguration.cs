@@ -8,12 +8,19 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-            builder.HasKey(c => c.Id);
-            builder.Property(c => c.MediaUserId).IsRequired();
+            builder.ToTable("chats");
 
-            builder.HasMany(c => c.Messages)
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.ChatImageUrl).IsRequired(false);
+            builder.Property(c => c.ChatName).IsRequired().HasMaxLength(500);
+
+            builder.HasMany(c => c.ChatMessages)
                .WithOne(m => m.Chat)
                .HasForeignKey(m => m.ChatId);
+
+            builder.HasMany(c => c.ChatMediaUsers)
+                .WithOne(c => c.Chat)
+                .HasForeignKey(c => c.ChatId);
 
             builder.Ignore(c => c.CreatedBy);
             builder.Ignore(c => c.ModifiedBy);

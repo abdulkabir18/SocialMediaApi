@@ -30,29 +30,29 @@ namespace Host.Controllers
             return Ok(new { result });
         }
 
-        [HttpPatch("edit")]
-        [Authorize]
-        public async Task<IActionResult> EditAccount([FromForm] EditRequestModel edit)
-        {
-            var result = await _mediaUserService.EditDetails(edit);
+        //[HttpPatch("edit")]
+        //[Authorize]
+        //public async Task<IActionResult> EditAccount([FromForm] EditRequestModel edit)
+        //{
+        //    var result = await _mediaUserService.EditDetails(edit);
 
-            if (!result.Status) return BadRequest(new { result });
+        //    if (!result.Status) return BadRequest(new { result });
 
-            return Ok(new { result });
-        }
+        //    return Ok(new { result });
+        //}
 
-        [HttpDelete("delete")]
-        [Authorize]
-        public async Task<IActionResult> DeleteAccount()
-        {
-            var mediaUser = await _currentUser.GetCurrentMediaUser();
-            var delete = new DeleteAccountRequestModel { MediaUserId = mediaUser.Data!.Id };
-            var result = await _mediaUserService.DeleteAccount(delete);
+        //[HttpDelete("delete")]
+        //[Authorize]
+        //public async Task<IActionResult> DeleteAccount()
+        //{
+        //    var mediaUser = await _currentUser.GetCurrentMediaUser();
+        //    var delete = new DeleteAccountRequestModel { MediaUserId = mediaUser.Data!.Id };
+        //    var result = await _mediaUserService.DeleteAccount(delete);
 
-            if (!result.Status) return BadRequest(new { result });
+        //    if (!result.Status) return BadRequest(new { result });
 
-            return Ok(new { result });
-        }
+        //    return Ok(new { result });
+        //}
 
         [HttpGet("currentMediaUser")]
         [Authorize]

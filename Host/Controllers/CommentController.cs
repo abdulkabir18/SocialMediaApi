@@ -3,6 +3,7 @@ using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Host.Controllers
 {
@@ -17,6 +18,7 @@ namespace Host.Controllers
             _commentService = commentService;
         }
 
+        [SwaggerOperation(Description = "Customers Comment On A Post")]
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> AddComment([FromBody] AddCommentRequestModel model)
@@ -52,10 +54,10 @@ namespace Host.Controllers
 
         [HttpPatch("edit")]
         [Authorize]
-        public async Task<IActionResult> EditComment([FromBody]  EditCommentRequestModel model)
+        public async Task<IActionResult> EditComment([FromBody] EditCommentRequestModel model)
         {
             var result = await _commentService.EditComment(model);
-            if(!result.Status) return BadRequest(new {result}); return Ok(new { result });
+            if (!result.Status) return BadRequest(new { result }); return Ok(new { result });
         }
 
         [HttpDelete("delete/{model}")]

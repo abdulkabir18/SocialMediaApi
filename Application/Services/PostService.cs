@@ -40,51 +40,54 @@ namespace Application.Services
                 };
             }
 
-            if (model.ContentType != ContentType.text && model.Content != null)
-            {
-                var post = new Post
-                {
-                    Content = await _uploadService.UploadFileAsync(model.Content)!,
-                    ContentType = model.ContentType,
-                    CreatedBy = currentUser.Data.FullName,
-                    PosterId = currentUser.Data.Id,
-                    Title = model.Title
-                };
+            if (model.ContentText == null && model.Files.Count == 0) return new Result<PostDto> { Message = "Error: Required", Data = null, Status = false };
 
-                await _postRepository.AddAsync(post);
-                await _unitOfWork.SaveAsync();
 
-                return new Result<PostDto>
-                {
-                    Message = "Post Created Successfully",
-                    Data = new PostDto { Content = post.Content,ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title,CommentCount = 0,LikeCount = 0, Id = post.Id,DateCreated = post.DateCreated},
-                    Status = true
-                };
-            }
-            else if(model.ContentType == ContentType.text && model.ContentText != null)
-            {
-                var post = new Post
-                {
-                    Content = model.ContentText,
-                    ContentType = model.ContentType,
-                    CreatedBy = currentUser.Data.FullName,
-                    PosterId = currentUser.Data.Id,
-                    Title = model.Title
-                };
+            //if (model.ContentType != ContentType.text && model.Content != null)
+            //{
+            //    var post = new Post
+            //    {
+            //        Content = await _uploadService.UploadFileAsync(model.Content)!,
+            //        ContentType = model.ContentType,
+            //        CreatedBy = currentUser.Data.FullName,
+            //        PosterId = currentUser.Data.Id,
+            //        Title = model.Title
+            //    };
 
-                await _postRepository.AddAsync(post);
-                await _unitOfWork.SaveAsync();
+            //    await _postRepository.AddAsync(post);
+            //    await _unitOfWork.SaveAsync();
 
-                return new Result<PostDto>
-                {
-                    Message = "Post Created Successfully",
-                    Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = 0, LikeCount = 0, Id = post.Id, DateCreated = post.DateCreated},
-                    Status = true
-                };
-            }
+            //    return new Result<PostDto>
+            //    {
+            //        Message = "Post Created Successfully",
+            //        Data = new PostDto { Content = post.Content,ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title,CommentCount = 0,LikeCount = 0, Id = post.Id,DateCreated = post.DateCreated},
+            //        Status = true
+            //    };
+            //}
+            //else if(model.ContentType == ContentType.text && model.ContentText != null)
+            //{
+            //    var post = new Post
+            //    {
+            //        Content = model.ContentText,
+            //        ContentType = model.ContentType,
+            //        CreatedBy = currentUser.Data.FullName,
+            //        PosterId = currentUser.Data.Id,
+            //        Title = model.Title
+            //    };
 
-            return new Result<PostDto>
-            { Message = "Error: Post creation failed due to some details is not provided",Data = null, Status = false};
+            //    await _postRepository.AddAsync(post);
+            //    await _unitOfWork.SaveAsync();
+
+            //    return new Result<PostDto>
+            //    {
+            //        Message = "Post Created Successfully",
+            //        Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.CreatedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = 0, LikeCount = 0, Id = post.Id, DateCreated = post.DateCreated},
+            //        Status = true
+            //    };
+            //}
+
+            //return new Result<PostDto>
+            //{ Message = "Error: Post creation failed due to some details is not provided",Data = null, Status = false};
         }
 
         public async Task<Result<PostDto>> DeletePost(DeletePostRequestModel delete)

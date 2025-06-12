@@ -7,7 +7,7 @@
         public Post Post { get; set; } = default!;
         public required Guid CommenterId { get; set; }
         public MediaUser Commenter { get; set; } = default!;
-        public ICollection<Reply> Replies { get; set; } = [];
-        public ICollection<Like> Likes { get; set; } = [];
+        public ICollection<Reply> CommentReplies { get; set; } = [];
+        public ICollection<Like> CommentLikes { get; set; } = [];
     }
 }

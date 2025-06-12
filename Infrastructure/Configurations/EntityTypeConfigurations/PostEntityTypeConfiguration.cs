@@ -8,18 +8,22 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
+            builder.ToTable("posts");
+
             builder.HasKey(p =>  p.Id);
-            builder.Property(p => p.Title).IsRequired();
-            builder.Property(p => p.ContentType).IsRequired();
-            builder.Property(p => p.Content).IsRequired();
+            //builder.Property(p => p.Title).IsRequired();
+            //builder.Property(p => p.ContentType).IsRequired();
+            builder.Property(p => p.ContentText);
+            builder.Property(p => p.ContentUrl);
+            builder.Property(p => p.PostVisibility).IsRequired();
             builder.Property(p => p.PosterId).IsRequired();
 
-            builder.HasMany(p => p.Comments)
+            builder.HasMany(p => p.PostComments)
                .WithOne(c => c.Post)
                .HasForeignKey(c => c.PostId)
                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(p => p.Likes)
+            builder.HasMany(p => p.PostLikes)
                    .WithOne(l => l.Post)
                    .HasForeignKey(l => l.PostId)
                    .OnDelete(DeleteBehavior.Cascade);

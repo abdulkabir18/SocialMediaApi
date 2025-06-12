@@ -8,20 +8,24 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
+            builder.ToTable("comments");
+
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Text).IsRequired();
             builder.Property(c => c.PostId).IsRequired();
             builder.Property(c => c.CommenterId).IsRequired();
 
-            builder.HasMany(c => c.Replies)
+            builder.HasMany(c => c.CommentReplies)
                .WithOne(r => r.Comment)
                .HasForeignKey(r => r.CommentId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Cascade)
+               .IsRequired();
 
-            builder.HasMany(c => c.Likes)
+            builder.HasMany(c => c.CommentReplies)
                    .WithOne(l => l.Comment)
                    .HasForeignKey(l => l.CommentId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Cascade)
+                   .IsRequired();
 
             builder.Ignore(c => c.IsDeleted);
         }
