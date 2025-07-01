@@ -90,61 +90,61 @@ namespace Application.Services
             //{ Message = "Error: Post creation failed due to some details is not provided",Data = null, Status = false};
         }
 
-        public async Task<Result<PostDto>> DeletePost(DeletePostRequestModel delete)
-        {
-            var post = await _postRepository.GetAsync(delete.PostId);
-            if(post == null)
-            {
-                return new Result<PostDto>
-                { Message = "Error: No post found to delete", Data = null, Status = false };
-            }
+        //public async Task<Result<PostDto>> DeletePost(DeletePostRequestModel delete)
+        //{
+        //    var post = await _postRepository.GetAsync(delete.PostId);
+        //    if(post == null)
+        //    {
+        //        return new Result<PostDto>
+        //        { Message = "Error: No post found to delete", Data = null, Status = false };
+        //    }
 
-            var mediaUser = await _currentUser.GetCurrentMediaUser();
-            if(mediaUser.Data == null || mediaUser.Data.Id != post.PosterId)
-            {
-                return new Result<PostDto>
-                { Message = "Error: Verification failed", Data = null, Status = false };
-            }
+        //    var mediaUser = await _currentUser.GetCurrentMediaUser();
+        //    if(mediaUser.Data == null || mediaUser.Data.Id != post.PosterId)
+        //    {
+        //        return new Result<PostDto>
+        //        { Message = "Error: Verification failed", Data = null, Status = false };
+        //    }
 
-            _postRepository.Delete(post);
-            await _unitOfWork.SaveAsync();
+        //    _postRepository.Delete(post);
+        //    await _unitOfWork.SaveAsync();
 
-            return new Result<PostDto>
-            { Message = "Post delete successfully", Status = true, Data = { } };
-        }
+        //    return new Result<PostDto>
+        //    { Message = "Post delete successfully", Status = true, Data = { } };
+        //}
 
-        public async Task<Result<PostDto>> EditPost(EditPostRequestModel edit)
-        {
-            var post = await _postRepository.GetAsync(edit.PostId);
-            var mediaUser = await _currentUser.GetCurrentMediaUser();
-            if(mediaUser.Data == null || post == null) 
-                return new Result<PostDto> { Message = "Error: Try again", Data = null, Status = false};
+        //public async Task<Result<PostDto>> EditPost(EditPostRequestModel edit)
+        //{
+        //    var post = await _postRepository.GetAsync(edit.PostId);
+        //    var mediaUser = await _currentUser.GetCurrentMediaUser();
+        //    if(mediaUser.Data == null || post == null) 
+        //        return new Result<PostDto> { Message = "Error: Try again", Data = null, Status = false};
 
-            if (post.PosterId != mediaUser.Data.Id)
-                return new Result<PostDto> { Message = "Error: Failed to edit", Status = false, Data = null };
+        //    if (post.PosterId != mediaUser.Data.Id)
+        //        return new Result<PostDto> { Message = "Error: Failed to edit", Status = false, Data = null };
 
-            if(!string.IsNullOrEmpty(edit.Title)) { post.Title = edit.Title; }
-            if(edit.ContentType != ContentType.text && edit.Content != null) 
-            {
-                post.Content = await _uploadService.UploadFileAsync(edit.Content)!;
-                post.ContentType = edit.ContentType;
-            }
-            if(edit.ContentType == ContentType.text && !string.IsNullOrEmpty(edit.ContentText))
-            {
-                post.ContentType = edit.ContentType;
-                post.Content = edit.ContentText;
-            }
+        //    if(!string.IsNullOrEmpty(edit.Title)) { post.Title = edit.Title; }
+        //    if(edit.ContentType != ContentType.text && edit.Content != null) 
+        //    {
+        //        post.Content = await _uploadService.UploadFileAsync(edit.Content)!;
+        //        post.ContentType = edit.ContentType;
+        //    }
+        //    if(edit.ContentType == ContentType.text && !string.IsNullOrEmpty(edit.ContentText))
+        //    {
+        //        post.ContentType = edit.ContentType;
+        //        post.Content = edit.ContentText;
+        //    }
 
-            if (edit.ContentText == null && edit.Content == null && edit.Title == null)
-                return new Result<PostDto> { Message = "No details to update with", Data = null, Status = false };
+        //    if (edit.ContentText == null && edit.Content == null && edit.Title == null)
+        //        return new Result<PostDto> { Message = "No details to update with", Data = null, Status = false };
 
-            post.DateModified = DateTime.UtcNow;
-            post.ModifiedBy = mediaUser.Data.FullName;
-            _postRepository.Update(post);
-            await _unitOfWork.SaveAsync();
+        //    post.DateModified = DateTime.UtcNow;
+        //    post.ModifiedBy = mediaUser.Data.FullName;
+        //    _postRepository.Update(post);
+        //    await _unitOfWork.SaveAsync();
 
-            return new Result<PostDto> { Message = "Post update successfully", Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.ModifiedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), Id = post.Id, DateCreated = post.DateCreated, LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && post.IsDeleted != true) }, Status = true };
-        }
+        //    return new Result<PostDto> { Message = "Post update successfully", Data = new PostDto { Content = post.Content, ContentType = post.ContentType, CreatedBy = post.ModifiedBy, PosterId = post.PosterId, Title = post.Title, CommentCount = await _commentRepository.CountAsync(post.Id), Id = post.Id, DateCreated = post.DateCreated, LikeCount = await _likeRepository.CountAsync(l => l.PostId == post.Id && post.IsDeleted != true) }, Status = true };
+        //}
 
         public async Task<Result<ICollection<PostDto>>> ViewAllPosts(Guid mediaUserId)
         {

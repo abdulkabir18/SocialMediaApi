@@ -2,9 +2,10 @@
 {
     public enum FriendStatus
     {
-        Pending,
-        Accepted,
-        Cancled,
-        Blocked
+        Pending = 1,
+        Accepted = 2,
+        Cancled = 3,
+        Blocked = 4,
+        Unfriended
     }
 }

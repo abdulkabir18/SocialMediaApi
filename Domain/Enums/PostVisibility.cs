@@ -2,7 +2,8 @@
 {
     public enum PostVisibility
     {
-        Friends,
-        Everyone
+        Public = 1,
+        Private = 2,
+        FriendsOnly = 3
     }
 }

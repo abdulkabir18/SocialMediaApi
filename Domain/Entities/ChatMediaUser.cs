@@ -6,5 +6,8 @@
         public required Chat Chat { get; set; }
         public required Guid MediaUserId { get; set; }
         public required MediaUser MediaUser { get; set; }
+
+        public bool IsAdmin { get; set; }
+        public bool IsMuted { get; set; }
     }
 }
