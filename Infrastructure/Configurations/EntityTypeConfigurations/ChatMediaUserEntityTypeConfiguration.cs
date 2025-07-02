@@ -8,21 +8,22 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<ChatMediaUser> builder)
         {
-            builder.ToTable("chatmediaUsers");
+            builder.ToTable("ChatMediaUsers");
 
-            builder.HasKey(c => c.Id);
+            builder.HasKey(cmu => cmu.Id);
+            builder.Property(cmu => cmu.IsAdmin).IsRequired();
+            builder.Property(cmu => cmu.IsMuted).IsRequired();
 
-            builder.HasOne(c => c.Chat)
-                .WithMany(c => c.ChatMediaUsers)
-                .HasForeignKey(c => c.ChatId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+            builder.HasOne(cmu => cmu.Chat)
+                   .WithMany(c => c.ChatMediaUsers)
+                   .HasForeignKey(cmu => cmu.ChatId)
+                   .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(c => c.MediaUser)
-                .WithMany(c => c.ChatMediaUsers)
-                .HasForeignKey(c => c.ChatId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+            builder.HasOne(cmu => cmu.MediaUser)
+                   .WithMany(mu => mu.ChatMediaUsers)
+                   .HasForeignKey(cmu => cmu.MediaUserId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

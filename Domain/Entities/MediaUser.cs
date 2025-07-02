@@ -14,6 +14,7 @@
         public string? Bio { get; set; }
 
         public ICollection<ChatMediaUser> ChatMediaUsers { get; set; } = [];
+        public ICollection<Message> Messages { get; set; } = [];
         public ICollection<MessageReaction> MessageReactions { get; set; } = [];
 
         public ICollection<Post> Posts { get; set; } = [];
@@ -36,6 +37,8 @@
 
         public ICollection<Friend> FriendsAccepted { get; set; } = [];
         public ICollection<Friend> FriendsRequested { get; set; } = [];
+
+        public ICollection<Notification> Notifications { get; set; } = [];
     }
 }
         //public string? ProfilePictureUrl { get; set; }

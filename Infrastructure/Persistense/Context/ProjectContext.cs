@@ -17,6 +17,8 @@ namespace Infrastructure.Persistense.Context
         public DbSet<PostMediaComment> PostMediaComments { get; set; }
         public DbSet<PostMediaReaction> PostMediaReactions { get; set; }
         public DbSet<PostMediaCommentReaction> PostMediaCommentReactions { get; set; }
+        public DbSet<PostMediaCommentReply> PostMediaCommentReplies { get; set; }
+        public DbSet<PostMediaCommentReplyReaction> PostMediaCommentReplyReactions { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<ReplyComment> ReplyComments { get; set; }
         public DbSet<PostReaction> PostReactions { get; set; }

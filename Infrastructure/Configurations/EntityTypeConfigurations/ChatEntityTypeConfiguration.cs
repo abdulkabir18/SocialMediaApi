@@ -8,22 +8,22 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-            builder.ToTable("chats");
+            builder.ToTable("Chats");
 
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.ChatImageUrl).IsRequired(false);
+            builder.Property(c => c.ChatImageUrl).IsRequired(false).HasMaxLength(250);
             builder.Property(c => c.ChatName).IsRequired().HasMaxLength(500);
+            builder.Property(c => c.IsGroup).HasDefaultValue(false);
 
             builder.HasMany(c => c.ChatMessages)
                .WithOne(m => m.Chat)
-               .HasForeignKey(m => m.ChatId);
+               .HasForeignKey(m => m.ChatId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.ChatMediaUsers)
                 .WithOne(c => c.Chat)
-                .HasForeignKey(c => c.ChatId);
-
-            builder.Ignore(c => c.CreatedBy);
-            builder.Ignore(c => c.ModifiedBy);
+                .HasForeignKey(c => c.ChatId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

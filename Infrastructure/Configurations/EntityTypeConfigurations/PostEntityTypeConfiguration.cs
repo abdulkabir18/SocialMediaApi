@@ -8,27 +8,39 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            builder.ToTable("posts");
+            builder.ToTable("Posts");
 
             builder.HasKey(p =>  p.Id);
-            //builder.Property(p => p.Title).IsRequired();
-            //builder.Property(p => p.ContentType).IsRequired();
-            builder.Property(p => p.ContentText);
-            builder.Property(p => p.ContentUrl);
+            builder.Property(p => p.ContentText).HasMaxLength(10000);
+            builder.Property(p => p.Type).IsRequired();
             builder.Property(p => p.PostVisibility).IsRequired();
             builder.Property(p => p.PosterId).IsRequired();
+            builder.Property(p => p.BackgroundStyleId).HasMaxLength(50); 
+            builder.Property(p => p.CreatedBy).IsRequired();
+            builder.Property(p => p.DateCreated).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            builder.Property(p => p.IsDeleted).HasDefaultValue(false);
+            builder.HasIndex(p => p.PosterId);
+            builder.HasIndex(p => p.Type);
 
-            builder.HasMany(p => p.PostComments)
-               .WithOne(c => c.Post)
-               .HasForeignKey(c => c.PostId)
-               .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(p => p.Poster)
+                   .WithMany(mu => mu.Posts)
+                   .HasForeignKey(p => p.PosterId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(p => p.PostLikes)
-                   .WithOne(l => l.Post)
-                   .HasForeignKey(l => l.PostId)
+            builder.HasMany(p => p.Medias)
+                   .WithOne(pm => pm.Post)
+                   .HasForeignKey(pm => pm.PostId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Ignore(p => p.IsDeleted);
+            builder.HasMany(p => p.PostComments)
+                   .WithOne(c => c.Post)
+                   .HasForeignKey(c => c.PostId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(p => p.PostReactions)
+                   .WithOne(r => r.Post)
+                   .HasForeignKey(r => r.PostId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

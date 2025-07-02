@@ -8,25 +8,20 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Friend> builder)
         {
-            builder.ToTable("friends");
+            builder.ToTable("Friends");
 
             builder.HasKey(f => f.Id);
-            builder.Property(f => f.RequesterId).IsRequired();
-            builder.Property(f => f.AddresseeId).IsRequired();
-            builder.Property(f => f.Status).IsRequired();
+            builder.Property(f => f.Status).IsRequired().HasConversion<int>();
 
             builder.HasOne(f => f.Requester)
-               .WithMany(m => m.MediaUserRequstedFriends)
-               .HasForeignKey(f => f.RequesterId)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(f => f.Addressee)
-                   .WithMany(m => m.MediaUserAcceptedFriends)
-                   .HasForeignKey(f => f.AddresseeId)
+                   .WithMany(u => u.FriendsRequested)
+                   .HasForeignKey(f => f.RequesterId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Ignore(f => f.CreatedBy);
-            builder.Ignore(f => f.ModifiedBy);
+            builder.HasOne(f => f.Addressee)
+                   .WithMany(u => u.FriendsAccepted)
+                   .HasForeignKey(f => f.AddresseeId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

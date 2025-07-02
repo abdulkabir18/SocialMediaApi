@@ -8,13 +8,26 @@ namespace Infrastructure.Configurations.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("users");
-
+            builder.ToTable("Users");
             builder.HasKey(u => u.Id);
+
             builder.Property(u => u.Salt).IsRequired();
             builder.HasIndex(u => u.PhoneNumber).IsUnique();
-            builder.Property(u => u.Email).IsRequired();
+            builder.HasIndex(u => u.Email).IsUnique();
+            builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
+            builder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(20);
             builder.Property(u => u.Password).IsRequired();
+            builder.Property(u => u.LoggedInDeviceIpAddress).HasMaxLength(100).IsRequired(false);
+            builder.Property(u => u.DateCreated).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            builder.Property(u => u.IsDeleted).HasDefaultValue(false);
+            builder.Property(u => u.IsActive).HasDefaultValue(true);
+            builder.Property(u => u.IsEmailVerified).HasDefaultValue(false);
+            builder.Property(u => u.IsPhoneNumberVerified).HasDefaultValue(false);
+            builder.Property(u => u.IsOnline).HasDefaultValue(false);
+            builder.Property(u => u.LastSeen).IsRequired(false);
+            builder.Property(u => u.DeactivatedAt).IsRequired(false);
+            builder.Property(u => u.CreatedBy).IsRequired();
+            builder.Property(u => u.ModifiedBy).IsRequired(false);
         }
     }
 }

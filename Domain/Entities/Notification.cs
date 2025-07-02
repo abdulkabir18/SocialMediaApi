@@ -9,7 +9,7 @@ namespace Domain.Entities
         public string Message { get; set; } = default!;
         public bool IsRead { get; set; } = false;
         public DateTime? ReadAt { get; set; }
-        public NotificationType Type { get; set; }
+        public NotificationType Type { get; set; } = NotificationType.Generic;
         public Guid? SourceEntityId { get; set; }
     }
 }
