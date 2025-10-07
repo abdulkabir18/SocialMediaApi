@@ -19,7 +19,7 @@ namespace Infrastructure.Persistense.Repositories
 
         public async Task<ICollection<Chat>> GetAllAsync(Guid mediaUserId)
         {
-            return await _context.Set<Chat>().AsNoTracking().Where(c => c.MediaUserId == mediaUserId).OrderBy(p => p.Messages.OrderBy(m => m.DateCreated)).Include(m => m.MediaUser.AcceptedFriends).ToListAsync();
+            return await _context.Set<Chat>().AsNoTracking().Where(c => c.ChatMediaUsers.Any(cm => cm.MediaUserId == mediaUserId)).OrderBy(p => p.ChatMessages.OrderBy(m => m.DateCreated)).Include(m => m.MediaUser.AcceptedFriends).ToListAsync();
         }
 
         public async Task<Chat?> GetAsync(Guid id)
